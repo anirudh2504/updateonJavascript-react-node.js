@@ -28,18 +28,24 @@ function asyncFunction()
         {
             setTimeout(()=>      //this will fetch data after 5 sec
                 {
-                    console.log("some details");
+                    console.log("some details ");
                     resolve("Success")
                 },5000);
            
         });
 }
-console.log("Fetching data ")
+console.log("Fetching data1 ")
 let p1=asyncFunction();
 p1.then((res)=>
     {
         console.log(res);
+        let p2=asyncFunction();
+p2.then((res)=>
+    {
+        console.log(res);
     });
+    });
+    
 // p1.reject((res)=>
 //     {
 
