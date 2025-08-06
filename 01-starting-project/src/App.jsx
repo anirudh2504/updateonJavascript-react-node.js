@@ -4,6 +4,7 @@ import { EXAMPLES } from "./data.js";
 import Header from "./components/Header.jsx";
 import TabButton from "./components/TabButton.jsx";
 import CoreConcept from "./components/CoreConcepts.jsx";
+import Card from "./components/card.jsx";
 import { Component } from "react";
 import { jsx } from "react/jsx-runtime";
 function App() {
@@ -14,6 +15,7 @@ function App() {
   return (
     <>
       <Header />
+      
       <main>
         <section id="core-concepts">
           <h2>Core Concepts</h2>
@@ -72,6 +74,8 @@ function App() {
           </div>
         </section>
       </main>
+      <Card />
+      
     </>
   );
 }
