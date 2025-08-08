@@ -1,3 +1,8 @@
+
+
+
+
+
 // const abc={
 //     a:10,
 //     b:20
@@ -100,11 +105,396 @@
 
 
 
-const calAge=function (dateOfBirth)
+// const calAge=function (dateOfBirth)
+// {
+//     return 2025-dateOfBirth;
+// }
+
+
+// const person=[2002,2005,2010,2015];
+// console.log(calAge(person[1]));
+
+
+
+// const arr=[12,15,"Ani",23,"Pra",true]
+//  console.log(arr.push(99));
+// console.log(arr.pop());
+// arr.unshift(22);
+// arr.shift();
+// console.log(arr.indexOf("Ani"));
+// console.log(arr.includes(23));
+// console.log(arr);
+// console.log(typeof(arr))
+
+
+
+// const jon =
+// {
+//     firstName : "jon",
+//     lastName :"Singh",
+//      1:"13",
+//     age :23 ,
+   
+// }
+// console.log(jon);
+// console.log(jon.1)    =>Guives error
+// console.log(jon["1"])
+
+
+//when function used in object it is called method
+// const jonas2=
+// {
+//     firstName : "jon2",
+//     lastName :"Singh",
+//     birthyear :2000,
+//     age :30 ,
+
+//     calcAge :function()
+//     {
+//         return 2025-this.birthyear;
+//     }
+// }
+// console.log(jonas2.calcAge(jonas2.birthyear));
+// console.log(jonas2.calcAge());
+
+
+// for(i=5;i<10;i++){
+//     console.log(i);
+// }
+// console.log(i);
+
+
+
+// let c=0;
+// while(c<=5)
+//     {
+//         console.log(c);
+//         c++;
+//     }
+//     console.log(c);
+
+
+
+
+
+// function calcAge(birthyear){
+//    // console.log(firstName);
+//     const age= 2025-birthyear;
+//     function printAge()
+//     {
+//         console.log(`you are ${age} years old`)
+//     }
+//     printAge();
+// }
+// //calcAge(2000);      //gives error that firstNmae not defined
+// const firstName="Jonas";
+//calcAge(2000);
+
+
+
+//variable hoistin 
+
+// console.log(x);=> canot acces before initiloization (TDZ)
+//console.log(y);
+//console.log(z);
+
+// let x=10;
+// var y=20;
+
+// const z=20;
+
+// console.log(x);
+// console.log(y);
+// console.log(z);
+// var y=30;
+// x=20;
+
+
+
+// function hoisting
+//console.log(sum(5,10));   //worked
+//console.log(sum2(5,10));  //TDZ eror
+  // console.log(sumArrow(5,10)); 
+
+// function sum(a,b){
+//     return a+b;
+// }
+
+// const sum2=function (a,b)
+// {
+//   return a+b;
+// }
+// const sumArrow=(a,b)=>a+b;
+
+
+
+// console.log(sum(5,10));    ..........All worked fine
+// console.log(sum2(5,10));
+//    console.log(sumArrow(5,10)); 
+
+
+
+
+// console.log(this);
+// const calAge=function(birthyear)
+// {
+    
+//    console.log(2025-birthyear) ;
+//    console.log(this);
+// }
+// calAge(2000)
+
+
+// const jonas=
+// {
+    
+//     year:2002,
+//     calAge :function()
+//              {
+//         console.log(this);
+//         isMillimum :function()
+//         {
+//             console.log(this);
+//         };
+//         return 2025-this.year
+//               },
+        
+        
+// }
+
+// const matilda=
+// {
+//    year :2000,
+
+// }
+// matilda.calAge=jonas.calAge;
+// // console.log(matilda);
+// console.log(matilda.calAge());
+// console.log(jonas.calAge());
+
+
+
+
+// const jessics=
+// {
+//     firstName :"jessics",
+//     lastName :"singh",
+//     age : 23,
+// };
+// const marriedJessics=jessics;
+// marriedJessics.lastName="abc";
+
+
+// console.log(marriedJessics);
+// jessics.age=25;
+// console.log(jessics);
+
+// const jessica=
+// {
+//     firstName:"jessi",
+//     lastName:"SIngh",
+//     age:23,
+//     arr:[20,30,50]
+// }
+// const newJseeica={...jessica}  //for spread operator we all elemnets but if we have array than it just pass its reference
+// newJseeica.age=99;
+// console.log(jessica);
+// console.log(newJseeica)
+
+
+
+//shallow copy
+// const newJseeica={...jessica} 
+// newJseeica.arr.push(200);
+// newJseeica.arr.unshift(500);
+// console.log(jessica);
+// console.log(newJseeica)
+
+//depp copy is using structuredclone
+// const newJessica=structuredClone(jessica);
+
+// newJessica.arr.push(200);
+// newJessica.arr.unshift(500);
+// console.log(jessica);
+// console.log(newJessica)
+
+
+
+// const abc=[[1,2,3],[55,66,77],[100,200,300]]
+// const a=[12,34,45,67]
+// const bcd=[...abc];
+
+// bcd.push(a);
+// console.log(abc);
+// console.log(bcd);
+
+
+
+
+
+
+// const restaurent=
+// {
+//     name:"Restaurent",
+//     Dishes:["Pizza","Calozone","Garlic bread","Samosa"],
+//     drinks :["coffee","Tea","cold drinks"]
+
+// }
+
+// const [Drink,mainCourse]=[restaurent.drinks[1],restaurent.Dishes[3]];
+
+// console.log(mainCourse);
+// console.log(Drink);
+
+
+
+
+// const abc=
+// {
+//      a : {
+//         aa:10,
+//         ab:20,
+//         ac:30
+//      },
+//      b:{
+//         ba:11,
+//         bb:12,
+//         bc:13,
+//      },
+//      c:{
+//         ca:99,
+//         cb:88,
+//         cc:77,
+//      }
+// }
+
+// const{a:{ac:ad},c}=abc;
+// console.log(ad,c);
+
+
+// const note = {
+//   id: 1,
+//   title: 'My first note',
+//   date: '01/01/1970',
+// }
+// const{id:newId,title,date}=note;
+// console.log(newId)
+// console.log(title)
+// console.log(date)
+
+
+
+//print key value pairs
+// for(let[key,values] of Object.entries(note))
+//     {
+//       console.log(key,values)
+//     }
+
+// const note = {
+//   id: 1,
+//   title: 'My first note',
+//   date: '01/01/1970',
+// }
+// for(let el of Object.keys(note))
+//     {
+//        console.log(el);
+//     }
+//     for(let el of Object.values(note))
+//         {
+//             console.log(el)
+//         }
+
+// for(let el of Object.entries(note))
+//         {
+//             console.log(el)
+//         }
+
+// const arr=[12,1,15,12,56,56,12];
+// const abc=[...new Set(arr)];
+// console.log(abc);
+
+
+
+// const note = {
+//   1: 10,
+//   title: 'My first note',
+//   date: '01/01/1970',
+// }
+// console.log(note[1])
+
+
+
+// let a=20;
+
+// let b=a;
+// a=30;
+// console.log(a)
+// console.log(b);
+
+// console.log(a===b)
+
+
+
+// let ac={
+//     age:21
+// }
+// let ad=ac;
+// console.log(ac);
+// console.log(ad);
+// console.log(ac===ad);
+// ac.age=31;
+// console.log(ac);
+// console.log(ad);
+// console.log(ac===ad);
+
+
+
+// const upper=function(str){
+//     return str.toUpperCase();
+// }
+// const lower=function(str)
+// {
+//    return str.toLowerCase();
+// }
+// const transform=function(str,fn)
+// {
+//     console.log(`this is transformed string: ${fn(str)} `)
+// }
+// transform("Anirudh",upper)
+
+
+// const ani=
+// {
+//     name:"Anirudh",
+//     dateOfBirth:2002,
+//     curYear:2025,
+//     calAge:function(curYear,dateOfBirth)
+//     {
+//         console.log(this);
+//         return this.curYear-this.dateOfBirth
+//     },
+// }
+
+// const b=
+// {
+//     name:"ABc",
+//     dateOfBirth:2000,
+//     curYear:2015,
+// }
+// const age=ani.calAge;
+// console.log(age.call(b));
+
+
+function update()
 {
-    return 2025-dateOfBirth;
+    let counter =0;
+    return function ()
+    {
+        counter ++;
+        return counter;
+    }
 }
-
-
-const person=[2002,2005,2010,2015];
-console.log(calAge(person[1]));
+const add=update();
+console.log(add())
+console.log(add())
+console.log(add())
