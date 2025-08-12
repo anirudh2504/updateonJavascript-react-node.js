@@ -471,6 +471,7 @@
 // }
 // setTimeout(hello,3000);
 
+
 // function getData(dataId, getNextData) {
 //   setTimeout(() => {
 //     console.log("data:" + dataId);
@@ -501,13 +502,10 @@
 //     setTimeout(()=>{
 //     console.log("data:"+dataId)
 //     resolve("Success")
-    
 //   },2000);
 //   })
   
 // }
-
-
 //promises in javaScript
 // let promise=new Promise((resolve,reject)=>{
 //   console.log("I am Promise")
@@ -601,20 +599,93 @@
 
 //async await
 
- function getData(dataId)
-{
-    return new Promise((resolve,reject)=>
-      {
-         setTimeout(()=>{
-          console.log("get data:"+dataId)
-          resolve("Data 1 Success")
-         },3000);
-      })
-}
-async function getAllData() {
-  await getData(1);
-  await getData(2);
-  await getData(3);
+//  function getData(dataId)
+// {
+//     return new Promise((resolve,reject)=>
+//       {
+//          setTimeout(()=>{
+//           console.log("get data:"+dataId)
+//           resolve("Data 1 Success")
+//          },3000);
+//       })
+// }
+// async function getAllData() {
+//   await getData(1);
+//   await getData(2);
+//   await getData(3);
   
-}
-getAllData();
+// }
+// getAllData();
+
+
+
+
+//--------------------------------------------call back & call back hell------------------------
+// function getData(dataId,nextData)
+// {
+//   setTimeout(()=>
+//     {console.log("data fetched:"+dataId)
+//       if(nextData)
+//         {
+//           nextData();
+//         }
+
+//   },2000)
+// }
+// getData(1)
+//  getData(2)
+//  getData(3)
+// getData(1,()=>getData(2,()=>getData(3))) //call back hell
+
+
+
+
+
+
+//------------------------------------------Promise & promise chaining ------------------------
+// function byPromise(dataId)
+// {
+//   return new Promise((resolve,reject)=>
+//     setTimeout(()=>
+//     {
+//       console.log("Data fetched: "+dataId)
+//       resolve("success")
+//     },3000
+// )
+//   )
+// }
+// byPromise(1).then((res)=>{
+//   console.log(res);
+//   byPromise(2).then((res)=>console.log(res))
+// })                                            
+
+
+//--------------------------------------Aysnc await------------------------------------------
+// function getData(dataId)
+// {
+//   return new Promise((resolve,reject)=>
+//     {
+//       setTimeout(()=>{
+//         console.log("Getting data"+dataId)
+//       resolve("Success");
+//       },3000)
+//     })
+// }
+// async function getAllData()
+// {
+//   await getData(1);
+//   await getData(2);
+//   await getData(3);
+// }
+// getAllData();
+
+
+// const url="xyz.com"
+
+// const getdata=async ()=>
+//   {
+// let response=await fetch(url);
+// console.log(response.status)
+// let data=await response.json();
+//   }
+
