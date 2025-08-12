@@ -1,8 +1,3 @@
-
-
-
-
-
 // const abc={
 //     a:10,
 //     b:20
@@ -80,12 +75,8 @@
 //     break;
 // }
 
-
-
 // let x=15;
 // x>=18 ?console.log("Senior") : console.log("junior");
-
-
 
 // function fruitJuice(apple,oranges)
 // {
@@ -97,24 +88,18 @@
 // const final=fruitJuice(3,0);
 // console.log(final);
 
-
 // let curYear=2025
 // let retirementAge=75;
 // const yearsTillRetirement=(dob)=>retirementAge-(curYear-dob);
 // console.log(yearsTillRetirement(2003));
-
-
 
 // const calAge=function (dateOfBirth)
 // {
 //     return 2025-dateOfBirth;
 // }
 
-
 // const person=[2002,2005,2010,2015];
 // console.log(calAge(person[1]));
-
-
 
 // const arr=[12,15,"Ani",23,"Pra",true]
 //  console.log(arr.push(99));
@@ -126,20 +111,17 @@
 // console.log(arr);
 // console.log(typeof(arr))
 
-
-
 // const jon =
 // {
 //     firstName : "jon",
 //     lastName :"Singh",
 //      1:"13",
 //     age :23 ,
-   
+
 // }
 // console.log(jon);
 // console.log(jon.1)    =>Guives error
 // console.log(jon["1"])
-
 
 //when function used in object it is called method
 // const jonas2=
@@ -157,13 +139,10 @@
 // console.log(jonas2.calcAge(jonas2.birthyear));
 // console.log(jonas2.calcAge());
 
-
 // for(i=5;i<10;i++){
 //     console.log(i);
 // }
 // console.log(i);
-
-
 
 // let c=0;
 // while(c<=5)
@@ -172,10 +151,6 @@
 //         c++;
 //     }
 //     console.log(c);
-
-
-
-
 
 // function calcAge(birthyear){
 //    // console.log(firstName);
@@ -190,9 +165,7 @@
 // const firstName="Jonas";
 //calcAge(2000);
 
-
-
-//variable hoistin 
+//variable hoistin
 
 // console.log(x);=> canot acces before initiloization (TDZ)
 //console.log(y);
@@ -209,12 +182,10 @@
 // var y=30;
 // x=20;
 
-
-
 // function hoisting
 //console.log(sum(5,10));   //worked
 //console.log(sum2(5,10));  //TDZ eror
-  // console.log(sumArrow(5,10)); 
+// console.log(sumArrow(5,10));
 
 // function sum(a,b){
 //     return a+b;
@@ -226,28 +197,22 @@
 // }
 // const sumArrow=(a,b)=>a+b;
 
-
-
 // console.log(sum(5,10));    ..........All worked fine
 // console.log(sum2(5,10));
-//    console.log(sumArrow(5,10)); 
-
-
-
+//    console.log(sumArrow(5,10));
 
 // console.log(this);
 // const calAge=function(birthyear)
 // {
-    
+
 //    console.log(2025-birthyear) ;
 //    console.log(this);
 // }
 // calAge(2000)
 
-
 // const jonas=
 // {
-    
+
 //     year:2002,
 //     calAge :function()
 //              {
@@ -258,8 +223,7 @@
 //         };
 //         return 2025-this.year
 //               },
-        
-        
+
 // }
 
 // const matilda=
@@ -272,9 +236,6 @@
 // console.log(matilda.calAge());
 // console.log(jonas.calAge());
 
-
-
-
 // const jessics=
 // {
 //     firstName :"jessics",
@@ -283,7 +244,6 @@
 // };
 // const marriedJessics=jessics;
 // marriedJessics.lastName="abc";
-
 
 // console.log(marriedJessics);
 // jessics.age=25;
@@ -301,10 +261,8 @@
 // console.log(jessica);
 // console.log(newJseeica)
 
-
-
 //shallow copy
-// const newJseeica={...jessica} 
+// const newJseeica={...jessica}
 // newJseeica.arr.push(200);
 // newJseeica.arr.unshift(500);
 // console.log(jessica);
@@ -318,8 +276,6 @@
 // console.log(jessica);
 // console.log(newJessica)
 
-
-
 // const abc=[[1,2,3],[55,66,77],[100,200,300]]
 // const a=[12,34,45,67]
 // const bcd=[...abc];
@@ -327,11 +283,6 @@
 // bcd.push(a);
 // console.log(abc);
 // console.log(bcd);
-
-
-
-
-
 
 // const restaurent=
 // {
@@ -345,9 +296,6 @@
 
 // console.log(mainCourse);
 // console.log(Drink);
-
-
-
 
 // const abc=
 // {
@@ -371,7 +319,6 @@
 // const{a:{ac:ad},c}=abc;
 // console.log(ad,c);
 
-
 // const note = {
 //   id: 1,
 //   title: 'My first note',
@@ -381,8 +328,6 @@
 // console.log(newId)
 // console.log(title)
 // console.log(date)
-
-
 
 //print key value pairs
 // for(let[key,values] of Object.entries(note))
@@ -413,16 +358,12 @@
 // const abc=[...new Set(arr)];
 // console.log(abc);
 
-
-
 // const note = {
 //   1: 10,
 //   title: 'My first note',
 //   date: '01/01/1970',
 // }
 // console.log(note[1])
-
-
 
 // let a=20;
 
@@ -432,8 +373,6 @@
 // console.log(b);
 
 // console.log(a===b)
-
-
 
 // let ac={
 //     age:21
@@ -447,8 +386,6 @@
 // console.log(ad);
 // console.log(ac===ad);
 
-
-
 // const upper=function(str){
 //     return str.toUpperCase();
 // }
@@ -461,7 +398,6 @@
 //     console.log(`this is transformed string: ${fn(str)} `)
 // }
 // transform("Anirudh",upper)
-
 
 // const ani=
 // {
@@ -484,17 +420,179 @@
 // const age=ani.calAge;
 // console.log(age.call(b));
 
+// function update()
+// {
+//     let counter =0;
+//     return function ()
+//     {
+//         counter ++;
+//         return counter;
+//     }
+// }
+// const add=update();
+// console.log(add())
+// console.log(add())
+// console.log(add())
+// const a={}
+// const b=
+// {
+//   a:10,
+// }
+// console.log(typeof(0));
+// console.log(typeof(1));
+// console.log(typeof(""));
+// console.log(typeof(null));
+// console.log(typeof(undefined));
+// console.log(typeof(Object));
+// console.log(typeof(a));
+// console.log(typeof(b));
 
-function update()
+                        //---------Async javaScript--------------------
+// console.log("1")
+// console.log("2")
+// setTimeout(()=>console.log("Hello"),3000)       // time in milisecond
+
+// console.log("3")
+
+// function sum(a,b)               //function callback in synchronous way
+// {
+//   console.log(a+b);
+// }
+// function calculator(a,b,callbackSum)
+// {
+//       callbackSum=sum(a,b)
+// }
+// calculator(10,15,sum)
+// calculator(10,15,(a,b)=>console.log(a+b))
+
+// function hello()             //function callback in async way
+// {
+//   console.log("Hello")
+// }
+// setTimeout(hello,3000);
+
+// function getData(dataId, getNextData) {
+//   setTimeout(() => {
+//     console.log("data:" + dataId);
+//     if (getNextData) {
+//       getNextData();
+//     }
+//   }, 2000);
+// }
+// // setTimeout(1, () => getData(2));
+// //  getData(2);
+// //  getData(3);
+// getData(1,()=>{getData(2,()=>{getData(3)})});
+
+
+
+
+function getData(dataId)
 {
-    let counter =0;
-    return function ()
-    {
-        counter ++;
-        return counter;
-    }
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+    console.log("data:"+dataId)
+    resolve("Success")
+    
+  },2000);
+  })
+  
 }
-const add=update();
-console.log(add())
-console.log(add())
-console.log(add())
+//call back hell  or pyramid of doom
+// getData(1,()=>{
+//   getData(2,()=>{
+//     getData(3)}
+//   )}
+// )
+
+
+//promises in javaScript
+// let promise=new Promise((resolve,reject)=>{
+//   console.log("I am Promise")
+//   resolve(123);
+// })
+
+//promise chaing to get same output from call bcak hell
+let p1=getData(1)
+p1.then((res)=>{
+  console.log(res)
+  getData(2).then((res)=>
+    {
+      console.log(res)
+    })
+});
+
+
+
+
+
+// const getPromise=()=>
+//   {
+//     return new Promise((resolve,reject)=>
+//       {
+//         console.log("I am Promise")
+//          //resolve();
+//         //reject();
+//       }
+//     )
+//   }
+
+
+//   let promise=getPromise();
+// promise.then(()=>console.log("Success"))
+// promise.catch(()=>console.log("error"))
+
+
+
+
+
+//  function asyncGetData()
+// {
+//     return new Promise((resolve,reject)=>
+//       {
+//          setTimeout(()=>{
+//           console.log("get Data 1")
+//           resolve("Data 1 Success")
+//          },3000);
+//       })
+// }
+
+// function asyncGetData2()
+// {
+//     return new Promise((resolve,reject)=>
+//       {
+//          setTimeout(()=>{
+//           console.log("get Data 2")
+//           resolve("Data 2 success")
+//          },3000);
+//       })
+// }
+//here both data are fetching at same time 
+// console.log("fetching data 1")
+// let p1=asyncGetData();
+// p1.then((res)=>console.log(res))
+
+
+
+// console.log("fetching data 2")
+// let p2=asyncGetData2();
+// p2.then((res)=>console.log(res))
+
+
+
+//if we want data one after other we use promise chaining
+
+// console.log("fetching data 1")
+// let p1=asyncGetData();
+// p1.then((res)=>{
+//   console.log(res);
+//   console.log("fetching data 2");
+//   let p2=asyncGetData2()
+//   p2.then((res)=>
+//     {
+//       console.log(res)
+//     })
+// })
+
+
+
