@@ -484,26 +484,28 @@
 // //  getData(3);
 // getData(1,()=>{getData(2,()=>{getData(3)})});
 
-
-
-
-function getData(dataId)
-{
-  return new Promise((resolve,reject)=>{
-    setTimeout(()=>{
-    console.log("data:"+dataId)
-    resolve("Success")
-    
-  },2000);
-  })
-  
-}
 //call back hell  or pyramid of doom
 // getData(1,()=>{
 //   getData(2,()=>{
 //     getData(3)}
 //   )}
 // )
+
+
+
+
+
+// function getData(dataId)
+// {
+//   return new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//     console.log("data:"+dataId)
+//     resolve("Success")
+    
+//   },2000);
+//   })
+  
+// }
 
 
 //promises in javaScript
@@ -513,15 +515,18 @@ function getData(dataId)
 // })
 
 //promise chaing to get same output from call bcak hell
-let p1=getData(1)
-p1.then((res)=>{
-  console.log(res)
-  getData(2).then((res)=>
-    {
-      console.log(res)
-    })
-});
+// let p1=getData(1)
+// p1.then((res)=>{
+//   console.log(res)
+//   getData(2).then((res)=>
+//     {
+//       console.log(res)
+//     })
+// });
 
+
+//better way
+// getData(1).then((res)=>getData(2)).then((res)=>console.log(res))
 
 
 
@@ -594,5 +599,22 @@ p1.then((res)=>{
 //     })
 // })
 
+//async await
 
-
+ function getData(dataId)
+{
+    return new Promise((resolve,reject)=>
+      {
+         setTimeout(()=>{
+          console.log("get data:"+dataId)
+          resolve("Data 1 Success")
+         },3000);
+      })
+}
+async function getAllData() {
+  await getData(1);
+  await getData(2);
+  await getData(3);
+  
+}
+getAllData();
