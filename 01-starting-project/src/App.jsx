@@ -1,7 +1,7 @@
 
 import {CORE_CONCEPTS} from './data.js'
 import { EXAMPLES } from './data.js';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import Header from "./components/Header/Header.jsx";
 import CoreConcepts from './components/CoreConcepts.jsx';
@@ -15,7 +15,7 @@ function App() {
     afterContent(selectedButton);
   }
   return (
-    <div>
+    <>
       <Header />
       <main>
         <section id="core-concepts">
@@ -58,7 +58,7 @@ function App() {
         </div>)}
         
       </main>
-    </div>
+    </>
   );
 }
 
