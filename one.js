@@ -689,3 +689,21 @@
 // let data=await response.json();
 //   }
 
+
+
+
+
+
+// for(var i=0;i<=10;i++)
+//     {
+//         setTimeout(()=>console.log(i),1000)
+//     }
+
+
+//     for(let i=0;i<=10;i++)
+//     {
+//         setTimeout(()=>console.log(i),3000)
+//     }
+   
+
+
