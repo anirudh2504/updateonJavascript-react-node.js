@@ -1,17 +1,15 @@
 
-import componentsImg from './assets/components.png'
 import {CORE_CONCEPTS} from './data.js'
 import { EXAMPLES } from './data.js';
 import { useState } from 'react';
 
 import Header from "./components/Header/Header.jsx";
 import CoreConcepts from './components/CoreConcepts.jsx';
-import Button from './components/TabButton.jsx';
 import TabButton from './components/TabButton.jsx';
 
 
 function App() {
-  const [tabContent,afterContent]=useState("components")
+  const [tabContent,afterContent]=useState()
   function handleSelect(selectedButton)
   {
     afterContent(selectedButton);
@@ -23,7 +21,10 @@ function App() {
         <section id="core-concepts">
          <h2>Core Concepts</h2>
          <ul>
-          <CoreConcepts title={CORE_CONCEPTS[0].title} 
+
+         {CORE_CONCEPTS.map((item)=>(<CoreConcepts{...item}/>))} 
+         
+          {/* <CoreConcepts title={CORE_CONCEPTS[0].title} 
           description={CORE_CONCEPTS[0].description}
           image={CORE_CONCEPTS[0].image}/>
 
@@ -34,26 +35,28 @@ function App() {
             ...CORE_CONCEPTS[2]
           }/>
 
-          <CoreConcepts {...CORE_CONCEPTS[3]}/>
+          <CoreConcepts {...CORE_CONCEPTS[3]}/> */}
          </ul>
         </section>
         <section id='examples'>
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelect={()=>handleSelect("components")}>Components</TabButton>
-            <TabButton onSelect={()=>handleSelect("jsx")}>JSX</TabButton>
-            <TabButton onSelect={()=>handleSelect("props")}>Props</TabButton>
-            <TabButton onSelect={()=>handleSelect("state")}>State</TabButton>
+            <TabButton selectedButton={tabContent==="components"} onSelect={()=>handleSelect("components")}>Components</TabButton>
+            <TabButton selectedButton={tabContent==="jsx"} onSelect={()=>handleSelect("jsx")}>JSX</TabButton>
+            <TabButton selectedButton={tabContent==="props"} onSelect={()=>handleSelect("props")}>Props</TabButton>
+            <TabButton selectedButton={tabContent==="state"} onSelect={()=>handleSelect("state")}>State</TabButton>
           </menu>
-           {tabContent}
+           
         </section>
-        <div id='tab-content'>
-          <h3>{EXAMPLES[tabContent].title}</h3>
+        {!tabContent ? (<p>Please Select a Topic</p>) :(<div id='tab-content'>
+          
           <p>{EXAMPLES[tabContent].description}</p>
+          <h3>{EXAMPLES[tabContent].title}</h3>
           <pre>
             <code>{EXAMPLES[tabContent].code}</code>
           </pre>
-        </div>
+        </div>)}
+        
       </main>
     </div>
   );
