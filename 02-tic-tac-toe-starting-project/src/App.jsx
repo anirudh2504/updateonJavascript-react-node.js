@@ -1,6 +1,7 @@
 import Player from "./Components/Player"
 import GameBoard from "./Components/GameBoard"
 import { useState } from "react"
+
 function App() {
   const[activePlayer,setActivePlayer]=useState('X');
   function handleBoardClick()
