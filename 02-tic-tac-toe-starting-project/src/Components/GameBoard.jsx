@@ -23,7 +23,7 @@ export default function GameBoard({onSelectButton,activePlayerSymbol})
         <ol id="game-board">
            {gameBoard.map((row,rowIndex)=><li key={rowIndex}>
             <ol>
-                {row.map((playerSymbol,colIndex)=><li key={colIndex}><button onClick={()=>handleClick(rowIndex,colIndex)}>{playerSymbol}</button></li>)}
+                {row.map((playerSymbol,colIndex)=><li key={colIndex}><button onClick={()=>handleClick(rowIndex,colIndex)} disabled={playerSymbol!==null}>{playerSymbol} </button></li>)}
             </ol>
            </li>)}
         </ol>
