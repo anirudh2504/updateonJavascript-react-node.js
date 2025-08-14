@@ -706,4 +706,7 @@
 //     }
    
 
-
+const a=[[12,15,18],[180,150,100],[99,88,77]]
+console.log(a)
+const b=[...a]
+console.log(b)
