@@ -1,4 +1,5 @@
 import { useRef, useState} from "react";
+import StopWatch from "./Stopwatch";
 
 export default function Player() {
   const playerName=useRef();
@@ -22,6 +23,7 @@ export default function Player() {
         <input ref={playerName} type="text"   />
         <button onClick={handleClick}>Set Name</button>
       </p>
+      <StopWatch/>
     </section>
   );
 }
