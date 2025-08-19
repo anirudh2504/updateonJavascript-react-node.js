@@ -15,6 +15,8 @@ export default function StopWatch()
    {
     clearInterval(refTime.current);
 
+    
+
 
    }
    function handleReset()
