@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 
 export default function StopWatch()
 {
-   let refTime= useRef(0);
+   let refTime= useRef();
    const [time,setTime]=useState(0);
    function handleStart()
    {
@@ -14,8 +14,6 @@ export default function StopWatch()
    function handleStop()
    {
     clearInterval(refTime.current);
-
-    
 
 
    }
