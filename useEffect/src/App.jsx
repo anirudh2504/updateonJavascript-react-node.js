@@ -5,11 +5,11 @@ function App() {
   const [count, setCount] = useState(0);
 
   //use Effect variatio 1:
-  //useEffect(()=>{alert("Run after every Rerender")}) // run after every render if this type of formater used
+  useEffect(()=>{alert("Run after every Rerender")}) // run after every render if this type of formater used
   
   
   
-  //variation 2:
+  // variation 2:
   // useEffect(() => {
   //   alert("Active only once")
   // }, []);
