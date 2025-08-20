@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
+import ChildComponent from "./components/childComponent";
 
 function App() {
   const [count, setCount] = useState(0);
 
   //use Effect variatio 1:
-  useEffect(()=>{alert("Run after every Rerender")}) // run after every render if this type of formater used
+//  useEffect(()=>{alert("Run after every Rerender")}) // run after every render if this type of formater used
   
   
   
@@ -63,6 +64,9 @@ function App() {
         <button onClick={handleClick}>Click Me </button>
         <button onClick={handleReset}>Reset</button>
       </div>
+      <br />
+      <br />
+      <ChildComponent/>
 
 {/* 
       <section>
