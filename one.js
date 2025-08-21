@@ -685,7 +685,7 @@
 // const getdata=async ()=>
 //   {
 // let response=await fetch(url);
-// console.log(response.status)
+// console.log(response.status);
 // let data=await response.json();
 //   }
 
