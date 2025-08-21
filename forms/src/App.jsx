@@ -1,13 +1,15 @@
-import AuthInputs from './components/AuthInputs.jsx';
 import Header from './components/Header.jsx';
+import Login from './components/Login.jsx';
 
-export default function App() {
+function App() {
   return (
     <>
       <Header />
       <main>
-        <AuthInputs />
+        <Login />
       </main>
     </>
   );
 }
+
+export default App;
