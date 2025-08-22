@@ -3,7 +3,7 @@
 
 //     function handleSubmit(event)
 //     {
-//        event.preventDefault();   
+//        event.preventDefault();
 //        const fd=new FormData(event.target);
 //        const acd=fd.getAll('acquisition')
 //        const data=Object.fromEntries(fd.entries())
@@ -36,8 +36,7 @@
 //         </div>
 //       </div>
 
-//        <hr /> 
-        
+//        <hr />
 
 //       <div className="control-row">
 //         <div className="control">
@@ -97,12 +96,6 @@
 //         </label>
 //       </div>
 
-
-
-
-
-
-
 //       {/*-----------------Buttons------------------- */}
 
 //       <p className="form-actions">
@@ -117,14 +110,65 @@
 //   );
 // }
 
-
-
-
-
+import { useActionState } from "react";
+import {
+  isEmail,
+  isNotEmpty,
+  isEqualToOtherValue,
+  hasMinLength,
+} from "../util/validation";
 
 export default function Signup() {
+
+
+  function handleSubmit(formData) {
+    const email = formData.get("email");
+    const pass = formData.get("password");
+    const cnfrmPass = formData.get("confirm-password");
+    const fName = formData.get("first-name");
+    const lName = formData.get("last-name");
+    const role = formData.get("role");
+    const terms = formData.get("terms");
+    const acquisitionChannel = formData.getAll("acquisition");
+
+    let errors = [];
+    if (!isNotEmpty(pass) || !hasMinLength(pass, 6)) {
+      errors.push("Enter six Digit Password");
+    }
+    if (!isEqualToOtherValue(pass, cnfrmPass)) {
+      errors.push("Password Does not Match");
+    }
+    if (!isNotEmpty(fName) || !isNotEmpty(lName)) {
+      errors.push("PLease provide first and last name ");
+    }
+    if (!isNotEmpty(role)) {
+      errors.push("Please provide your Role");
+    }
+    if (!terms) {
+      errors.push("Accept the terms & Conditions");
+    }
+    if (acquisitionChannel.length === 0) {
+      errors.push("PLease Select atleast one ");
+    }
+    if(errors.length>0){
+      return{
+        errors:errors
+      }
+      return{errors:null}
+    }
+
+    // console.log(email)
+    // console.log(pass)
+    // console.log(cnfrmPass)
+    // console.log(fName)
+    // console.log(lName)
+    // console.log(role)
+    // console.log(terms)
+    // console.log(acquisitionChannel)
+  }
+  const[fromState,fromACtion]=useActionState(handleSubmit,{errors:null})
   return (
-    <form>
+    <form action={handleSubmit}>
       <h2>Welcome on board!</h2>
       <p>We just need a little bit of data from you to get you started 🚀</p>
 
