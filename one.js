@@ -694,19 +694,19 @@
 
 
 
-// for(var i=0;i<=10;i++)
-//     {
-//         setTimeout(()=>console.log(i),1000)
-//     }
+for(var i=0;i<=10;i++)
+    {
+        setTimeout(()=>console.log(i),1000)
+    }
 
 
-//     for(let i=0;i<=10;i++)
-//     {
-//         setTimeout(()=>console.log(i),3000)
-//     }
+    for(let i=0;i<=10;i++)
+    {
+        setTimeout(()=>console.log(i),1000)
+    }
    
 
-const a=[[12,15,18],[180,150,100],[99,88,77]]
-console.log(a)
-const b=[...a]
-console.log(b)
+// const a=[[12,15,18],[180,150,100],[99,88,77]]
+// console.log(a)
+// const b=[...a]
+// console.log(b)
