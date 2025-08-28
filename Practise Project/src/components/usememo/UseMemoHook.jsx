@@ -26,3 +26,27 @@
 // }
 
 // export default UseMemoHook
+
+
+import React, { useState } from 'react'
+import MemoChild from './MemoChild';
+
+
+function UseMemoHook() {
+    const [count,setCount]=useState(0);
+  return (
+    <>
+    <h2>useMemo Hook</h2>
+    <div>
+        <p>{count}</p>
+        <button  style={{backgroundColor:"#00FA9A"}} onClick={()=>setCount(count+1)}>Counter Update</button>
+    </div>
+    <div>
+        <MemoChild name='Child Button'/>
+    </div>
+    </>
+    
+  )
+}
+
+export default UseMemoHook;

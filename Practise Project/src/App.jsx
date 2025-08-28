@@ -15,13 +15,15 @@ import EffectParent from './components/Effect/EffectParent'
 import UseRefParent from './components/UseRef/UseRefParent'
 import { createContext, useState } from 'react'
 import ParentContext from './components/useContext/ParentContext'
+import UseCallbackHook from './components/useCallback/UseCallbackHook'
+import FilterList from './components/FilterList'
 //import UseMemoHook from './components/usememo/UseMemoHook'
 
 
 
 const UserContext=createContext();
 function App() {
-  const[name,setName]=useState({name:"Anirudh"})
+  const[name,]=useState({name:"Anirudh"})
 
 
   return (
@@ -61,6 +63,12 @@ function App() {
       <hr />
       <br />
       {/* <UseMemoHook/> */}
+      
+      <UseCallbackHook/>
+      <hr />
+      <br />
+      <FilterList/>
+      
 
 
     </>
