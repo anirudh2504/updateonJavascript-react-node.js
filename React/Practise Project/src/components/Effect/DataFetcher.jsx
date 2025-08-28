@@ -15,6 +15,10 @@ const DataFetcher = () => {
   function handleShowData() {
     setShow(!show);
   }
+  function handleClick()
+  {
+    
+  }
   return (
     <>
       <h2>DataFetcher using fetch </h2>
@@ -24,9 +28,13 @@ const DataFetcher = () => {
       {loading ? (
         <h5>Loading Data....</h5>
       ) : show ? (
-        <ul>
+        <ul style={{ listStyleType: 'none'}}>
           {data.map((post) => (
+            <>
             <li key={post.id}>{post.id}:{post.title}</li>
+            
+            </>
+            
           ))}
         </ul>
       ) : (
