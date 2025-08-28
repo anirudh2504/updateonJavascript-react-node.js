@@ -694,19 +694,25 @@
 
 
 
-for(var i=0;i<=10;i++)
-    {
-        setTimeout(()=>console.log(i),1000)
-    }
+// for(var i=0;i<=10;i++)
+//     {
+//         setTimeout(()=>console.log(i),1000)
+//     }
 
 
-    for(let i=0;i<=10;i++)
-    {
-        setTimeout(()=>console.log(i),1000)
-    }
+//     for(let i=0;i<=10;i++)
+//     {
+//         setTimeout(()=>console.log(i),1000)
+//     }
    
 
 // const a=[[12,15,18],[180,150,100],[99,88,77]]
 // console.log(a)
 // const b=[...a]
 // console.log(b)
+
+
+const arr=[1,2,3,4,5,6,7,8,9]
+console.log(arr)
+console.log(arr.splice(2,1))
+console.log(arr)

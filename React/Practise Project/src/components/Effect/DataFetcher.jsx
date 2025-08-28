@@ -15,10 +15,7 @@ const DataFetcher = () => {
   function handleShowData() {
     setShow(!show);
   }
-  function handleClick()
-  {
-    
-  }
+  
   return (
     <>
       <h2>DataFetcher using fetch </h2>
