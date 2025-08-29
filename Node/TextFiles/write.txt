@@ -1,0 +1,1 @@
+WE are reading data from read file and write thatv data in write file which have empty data this is a file which i have to read in js file
