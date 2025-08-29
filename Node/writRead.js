@@ -19,9 +19,32 @@
 // console.log("Data Fetching...");
 
 //------------------------------Web server--------------------
-const http = require("http");
+// const http = require("http");
 
-const server = http.createServer((req, res) => {
-  res.end("Hello from Server");
-});
-server.listen(7000, "127.0.0.1", () => console.log("Listning on port 7000"));
+// const server = http.createServer((req, res) => {
+//   res.end("Hello from Server");
+// });
+// server.listen(7000, "127.0.0.1", () => console.log("Listning on port 7000"));
+
+
+
+//------------------------------express---------------------------
+const express =require('express')
+const fs=require('fs');
+const app=express();
+const port=3000;
+
+
+app.get('/',(req,res)=>{
+    console.log("Get request on server")
+    res.end("Server Rendering")
+})
+app.get('/api',(req,res)=>{
+   const data=fs.readFileSync('./data.json')
+   
+    res.end(data)
+    console.log()
+})
+app.listen(port,()=>{
+    console.log(`Listening to port ${port}`)
+})
