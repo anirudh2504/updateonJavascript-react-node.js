@@ -1,7 +1,7 @@
-import { readFileSync, writeFile } from 'fs';
-import express, { json } from 'express';
+const fs = require('fs');
+const express = require('express');
 const app = express();
-app.use(json());
+app.use(express.json());
 
 // app.get('/',(req,res)=>{
 //     res.status(200).json({message:"Hello from server Side",app:"Natours"})
@@ -11,7 +11,7 @@ app.use(json());
 //     res.send("You Can post To EndPoint")
 // })
 const tours = JSON.parse(
-  readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
+  fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 app.get('/api/v1/tours', (req, res) => {
   res.status(200).send({
@@ -28,14 +28,14 @@ app.post('/api/v1/tours', (req, res) => {
   const newTour = Object.assign({ id: newId }, req.body);
 
   tours.push(newTour);
-  writeFile(`${__dirname}/dev-data/data/tours-simple.json`,JSON.stringify(tours)),()=>{
+  fs.writeFile(`${__dirname}/dev-data/data/tours-simple.json`,JSON.stringify(tours),err=>{
     res.status(201).json({
         status:'success',
         data:{
             tour:newTour
         }
     })
-  }
+  })
  
 });
 
