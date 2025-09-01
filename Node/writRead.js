@@ -37,6 +37,7 @@ const port=3000;
 
 app.get('/',(req,res)=>{
     console.log("Get request on server")
+    console.log("entry to home")
     res.end("Server Rendering")
 })
 app.get('/api',(req,res)=>{
