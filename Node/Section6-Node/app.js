@@ -13,7 +13,8 @@ app.use(express.json()); //middleware  -----
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
-app.get('/api/v1/tours', (req, res) => {
+
+const getAllTours = (req, res) => {                        // ---------------------------->get All Tours
   res.status(200).send({
     status: 'success',
     results: tours.length,
@@ -21,9 +22,8 @@ app.get('/api/v1/tours', (req, res) => {
       tours,
     },
   });
-});
-
-app.get('/api/v1/tours/:id', (req, res) => {
+};
+const getSingleTour = (req, res) => {                        //--------------------->get single tour
   const id = req.params.id * 1; // convert string to number
   const tour = tours.find((el) => el.id === id);
 
@@ -42,8 +42,9 @@ app.get('/api/v1/tours/:id', (req, res) => {
       tour,
     },
   });
-});
-app.post('/api/v1/tours', (req, res) => {
+};
+
+const addNewTour = (req, res) => {                        //----------------------------->add new tours
   //   console.log(req.body);
   const newId = tours[tours.length - 1].id + 1; //Add new id to the data
   const newTour = Object.assign({ id: newId }, req.body); //object.assign assign values including previous values
@@ -61,9 +62,8 @@ app.post('/api/v1/tours', (req, res) => {
       });
     }
   );
-});
-
-app.patch('/api/v1/tours/:id', (req, res) => {
+};
+const updateTour = (req, res) => {                   //------------------------------------Update Tour
   if (req.params.id * 1 > tours.length) {
     return res.status(404).send({
       status: '404',
@@ -78,11 +78,9 @@ app.patch('/api/v1/tours/:id', (req, res) => {
       tour: '<Updated Tour Here>',
     },
   });
-});
+};
 
-
-
-app.delete('/api/v1/tours/:id', (req, res) => {
+const deleteTour = (req, res) => {                  //---------------------------------delete tour
   if (req.params.id * 1 > tours.length) {
     return res.status(404).send({
       status: '404',
@@ -93,10 +91,29 @@ app.delete('/api/v1/tours/:id', (req, res) => {
   }
   res.status(204).json({
     status: 'success',
-    data:null,
-   
+    data: null,
   });
-});
+};
+
+
+
+
+//-------------------------All Request------------------------------//
+app.get('/api/v1/tours', getAllTours);
+
+app.get('/api/v1/tours/:id', getSingleTour);
+
+app.post('/api/v1/tours', addNewTour);
+
+app.patch('/api/v1/tours/:id', updateTour);
+
+app.delete('/api/v1/tours/:id', deleteTour);
+
+
+
+
+
+
 const port = 4000;
 app.listen(port, () => {
   console.log(`listening on Port ${port}`);
