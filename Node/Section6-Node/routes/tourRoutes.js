@@ -4,6 +4,7 @@ const fs = require('fs');
 const router = express.Router();
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
+  
 );
 
 const getAllTours = (req, res) => {
@@ -39,7 +40,7 @@ const getSingleTour = (req, res) => {
 };
 
 const addNewTour = (req, res) => {
-  //----------------------------->add new tours
+  //----------------------------------->add new tours
   //   console.log(req.body);
   const newId = tours[tours.length - 1].id + 1; //Add new id to the data
   const newTour = Object.assign({ id: newId }, req.body); //object.assign assign values including previous values
