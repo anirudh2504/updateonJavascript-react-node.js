@@ -3,17 +3,71 @@ const express = require('express');
 const app = express();
 app.use(express.json()); //middleware  -----
 
-const testMiddleware=(req,res,next)=>{
-  console.log("I am a custom middleware")
-  next();
-}
-app.use(testMiddleware)
+// const testMiddleware=(req,res,next)=>{
+//   console.log("I am a custom middleware")
+//   next();
+// }
+// app.use(testMiddleware)
 
 
 
 //-------------------------------Custom middleware-----------------------//
 
 
+// const router=expreess.router();
+// const auth=(req,res,next)=>{
+//   console.log("I am inside auth middleware")
+
+
+//   req.user={
+//     id:1,
+//     role:'student'
+//   }
+//   if(req.user){
+//     next()
+//   }
+//   else{
+//     res.json({
+//       success:false,
+//       message:"Not a valid user"
+//     })
+//   }
+
+
+// }
+// const isStudent=(req,res,next)=>{
+//   console.log("i am inside a student middleware")
+//   if(req.user.role==='student'){
+//     next();
+
+//   }
+//   else{
+//     req.json({
+//       success:false,
+//       message:"Access Denied Not a Student"
+//     })
+//   }
+
+// }
+// const isAdmin=(req,res,next)=>{
+//   console.log("I am inside admin middleware")
+//   if(req.user.role==='Admin'){
+//     next()
+//   }else{
+//     res.json({
+//       success:false,
+//       message:"YOu are not a admin=>Access Denied"
+//     })
+//   }
+// }
+
+// router.get('/student',auth,isStudent,(req,res)=>{
+  
+//   res.send("Student Specific Page")
+// })
+// router.get('/admin',auth,isAdmin,(req,res)=>{
+//   res.send("Admin Page")
+// })
 
 
 // app.use((req,res,next)=>{
@@ -43,3 +97,6 @@ const port = 4000;
 app.listen(port, () => {
   console.log(`listening on Port ${port}`);
 });
+
+
+// module.exports=router
