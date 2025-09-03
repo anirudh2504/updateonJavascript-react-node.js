@@ -3,9 +3,19 @@ const express = require('express');
 const app = express();
 app.use(express.json()); //middleware  -----
 
+const testMiddleware=(req,res,next)=>{
+  console.log("I am a custom middleware")
+  next();
+}
+app.use(testMiddleware)
+
 
 
 //-------------------------------Custom middleware-----------------------//
+
+
+
+
 // app.use((req,res,next)=>{
 //   console.log("Hello from middleWare")
 //   next()
