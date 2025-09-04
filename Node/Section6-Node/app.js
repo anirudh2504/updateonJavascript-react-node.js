@@ -10,11 +10,10 @@ const DB = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD,
 );
 
-mongoose
-.connect(DB).then(con=>{
-  console.log(con.connections)
-  console.log("DB connection Successful")
-})
+mongoose.connect(DB).then((con) => {
+  console.log(con.connections);
+  console.log('DB connection Successful');
+});
 // app.use(express.json()); //middleware  -----
 
 // const testMiddleware=(req,res,next)=>{
