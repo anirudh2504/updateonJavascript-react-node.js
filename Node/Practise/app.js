@@ -1,6 +1,23 @@
-const express=require('express')
+const mongoose = require('mongoose');
+const express = require('express');
+const dotenv = require('dotenv');
+const app = express();
+const productRoutes=require('./routes/productRoutes')
+app.use(express.json)
 
-const app=express()
+dotenv.config({ path: './config.env' });
+
+const DB = process.env.DATABASE.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD,
+);
+
+mongoose.connect(DB).then((con) => {
+  
+  console.log('DB connection Successful');
+});
+app.use('/api',productRoutes)
+
 
 const port=8000;
 
