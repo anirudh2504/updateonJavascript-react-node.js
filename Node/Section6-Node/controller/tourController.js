@@ -110,28 +110,26 @@ exports.getAllTours = async (req, res) => {
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
     let query = Tour.find(JSON.parse(queryStr));
     //---------------Sorting-------------
-    if(req.query.sort)
-      {
-        const sortBy=req.query.sort.split(',').join(' ');
-        query=query.sort(sortBy);
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(',').join(' ');
+      query = query.sort(sortBy);
+    }
 
-      }
+    //-----------------Field Liming
+    if (req.query.fields) {
+      const fields = req.query.fields.split(',').join(' ');
+      query = query.select(fields);
+    }
+    //----------------------Pagination--------------
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 10;
+    const skip = (page - 1) * limit;
+    query = query.skip(skip).limit(limit);
 
-      //-----------------Field Liming
-      if(req.query.fields){
-        const fields=req.query.fields.split(',').join(' ')
-        query=query.select(fields)
-      }
-//----------------------Pagination--------------
-const page=req.query.page *1||1;
-const limit=req.query.limit *1 || 10;
-const skip=(page-1)*limit;
-query=query.skip(skip).limit(limit);
-
-if(req.query.page){
-  const numTours=await Tour.countDocuments();
-  if(skip>numTours) throw new Error("This page donot have any Data")
-}
+    if (req.query.page) {
+      const numTours = await Tour.countDocuments();
+      if (skip > numTours) throw new Error('This page donot have any Data');
+    }
     //------------Execute Query-----------------
 
     const tours = await query;
