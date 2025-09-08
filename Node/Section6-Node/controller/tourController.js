@@ -94,13 +94,46 @@ const Tour = require('../models/tourModel');
 
 exports.getAllTours = async (req, res) => {
   try {
+    //------Chaing of methods to write query--------------
+    // const tours=await Tour.find()
+    // .where('difficulty')
+    // .equals(5)
+    // .where(rating)
+    // .equals(4.5)
     //--------------Build Query---------------
-    const queryObj={...req.query}
-    const excludedFields=['page','limit','sort','fields'];
-    excludedFields.forEach(el=>delete queryObj(el))
-    const query=Tour.find()
+    const queryObj = { ...req.query };
+    const excludedFields = ['page', 'limit', 'sort', 'fields'];
+    excludedFields.forEach((el) => delete queryObj[el]);
 
-    //------------execute query-----------------
+    //------------ADVANCE FILTERING-------
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    let query = Tour.find(JSON.parse(queryStr));
+    //---------------Sorting-------------
+    if(req.query.sort)
+      {
+        const sortBy=req.query.sort.split(',').join(' ');
+        query=query.sort(sortBy);
+
+      }
+
+      //-----------------Field Liming
+      if(req.query.fields){
+        const fields=req.query.fields.split(',').join(' ')
+        query=query.select(fields)
+      }
+//----------------------Pagination--------------
+const page=req.query.page *1||1;
+const limit=req.query.limit *1 || 10;
+const skip=(page-1)*limit;
+query=query.skip(skip).limit(limit);
+
+if(req.query.page){
+  const numTours=await Tour.countDocuments();
+  if(skip>numTours) throw new Error("This page donot have any Data")
+}
+    //------------Execute Query-----------------
+
     const tours = await query;
     res.status(200).json({
       status: 'Success',
@@ -172,10 +205,10 @@ exports.updateTour = async (req, res) => {
 
 exports.deleteTour = async (req, res) => {
   try {
-     await Tour.findByIdAndDelete(req.params.id);
+    await Tour.findByIdAndDelete(req.params.id);
     res.status(200).json({
       status: 'Success',
-      message:`Data Deleted success having id ${req.params.id}`
+      message: `Data Deleted success having id ${req.params.id}`,
     });
   } catch (error) {
     res.status(400).json({
