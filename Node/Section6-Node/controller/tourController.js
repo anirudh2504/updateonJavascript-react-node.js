@@ -92,9 +92,48 @@ const Tour = require('../models/tourModel');
 //   });
 // };
 
-exports.getAllTours = (req, res) => {};
+exports.getAllTours = async (req, res) => {
+  try {
+    //--------------Build Query---------------
+    const queryObj={...req.query}
+    const excludedFields=['page','limit','sort','fields'];
+    excludedFields.forEach(el=>delete queryObj(el))
+    const query=Tour.find()
 
-exports.getSingleTour = (req, res) => {};
+    //------------execute query-----------------
+    const tours = await query;
+    res.status(200).json({
+      status: 'Success',
+      results: tours.length,
+      data: {
+        tours,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: 'fail',
+      data: error,
+    });
+  }
+};
+
+exports.getSingleTour = async (req, res) => {
+  try {
+    const tour = await Tour.findById(req.params.id);
+    res.status(200).json({
+      status: 'Success',
+
+      data: {
+        tour,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: 'fail',
+      data: error,
+    });
+  }
+};
 exports.addNewTour = async (req, res) => {
   try {
     const newTour = await Tour.create(req.body);
@@ -107,10 +146,41 @@ exports.addNewTour = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       status: 'fail',
-      data: error
+      data: error,
     });
   }
 };
-exports.updateTour = (req, res) => {};
+exports.updateTour = async (req, res) => {
+  try {
+    const updatedTour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({
+      status: 'success',
+      data: {
+        tour: updatedTour,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      data: error,
+    });
+  }
+};
 
-exports.deleteTour = (req, res) => {};
+exports.deleteTour = async (req, res) => {
+  try {
+     await Tour.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      status: 'Success',
+      message:`Data Deleted success having id ${req.params.id}`
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      data: error,
+    });
+  }
+};
