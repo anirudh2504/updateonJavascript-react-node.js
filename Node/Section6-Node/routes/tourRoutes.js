@@ -5,6 +5,7 @@ const tourController=require('../controller/tourController')
 const router = express.Router();
 
 router.route('/tour-stats').get(tourController.getTourStats)
+router.route('/monthly-plan').get(tourController.getMonthlyPlans)
 
 router.get('/', tourController.getAllTours);
 router.post('/', tourController.addNewTour);

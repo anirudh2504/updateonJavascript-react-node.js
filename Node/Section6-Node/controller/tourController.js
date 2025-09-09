@@ -232,16 +232,20 @@ exports.deleteTour = async (req, res) => {
 exports.getTourStats = async (req, res) => {
   try {
     const stats =await Tour.aggregate([
-      { $match: { ratingsAverage: { $gte: 4.5 } } },
+      { $match: { ratingsAverage: { $gte: 4.7} } },
       {
         $group: {
-          _id: null,
+          _id: '$difficulty',
+          numTours:{$sum:1},
           avgRating: { $avg: '$ratingsAverage' },
           avgPrice: { $avg: '$price' },
           minPrice: { $min: '$price' },
           maxPrice: { $max: '$price' },
         },
       },
+      {
+        $sort:{avgPrice:1}
+      }
     ]);
      res.status(200).json({
       status: 'success',
@@ -256,3 +260,42 @@ exports.getTourStats = async (req, res) => {
     });
   }
 };
+
+exports.getMonthlyPlans=async (req,res) => {
+  try {
+
+    
+    // const year=req.params.year;
+    const plan=await Tour.aggregate([
+      {$unwind:'$startDates'}
+    ])
+     res.status(200).json({
+      status: 'success',
+      Length:plan.length,
+      data: {
+        plan,
+        
+      },
+    });
+    //-----------------if we want to implement 
+    // if(req.query.sort){
+    //   sortBy2=req.query.sort.split(',').join(' ')
+    //   query=query.sort(sortBy2)
+    // }
+    //  const tours = await query;
+    // res.status(200).json({
+    //   status: 'Success',
+    //   results: tours.length,
+    //   data: {
+    //     tours,
+    //   },
+    // });
+    
+  }catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      data: error,
+    });
+  }
+  
+}
