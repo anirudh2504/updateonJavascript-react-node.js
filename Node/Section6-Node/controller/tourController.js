@@ -105,28 +105,23 @@ exports.getAllTours = async (req, res) => {
     const queryObj = { ...req.query };
     const excludedFields = ['page', 'limit', 'sort', 'fields'];
     excludedFields.forEach((el) => delete queryObj[el]);
-  
+
     //------------ADVANCE FILTERING-------
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
     let query = Tour.find(JSON.parse(queryStr));
 
-// //--------by name----------------> /api/v1/tour?name=a    >>>>means name must include a
-// if(queryObj.name){
-//   queryObj.name={
-//     $regex: queryObj.name,
-//     options:'i'     // ----makes case insensitive
-//   }
-//   query=query.find(queryObj.name)
-// }
-
-
-
-
-
+    // //--------by name----------------> /api/v1/tour?name=a    >>>>means name must include a
+    // if(queryObj.name){
+    //   queryObj.name={
+    //     $regex: queryObj.name,
+    //     options:'i'     // ----makes case insensitive
+    //   }
+    //   query=query.find(queryObj.name)
+    // }
 
     //---------------Sorting-------------     /api/v1/tour?sort=price       >this will sort by price
-                                              // api/v1/tour?sort=price,name >this will short by price and if equals than by name
+    // api/v1/tour?sort=price,name >this will short by price and if equals than by name
     if (req.query.sort) {
       const sortBy = req.query.sort.split(',').join(' ');
       query = query.sort(sortBy);
@@ -137,8 +132,8 @@ exports.getAllTours = async (req, res) => {
       const fields = req.query.fields.split(',').join(' ');
       query = query.select(fields);
     }
-    //----------------------Pagination-------------- 
-                                                 // /api/v1/tours/page=2 & limit=5,>>>>this will give 2nd page with data of 5
+    //----------------------Pagination--------------
+    // /api/v1/tours/page=2 & limit=5,>>>>this will give 2nd page with data of 5
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 10;
     const skip = (page - 1) * limit;
@@ -225,6 +220,34 @@ exports.deleteTour = async (req, res) => {
     res.status(200).json({
       status: 'Success',
       message: `Data Deleted success having id ${req.params.id}`,
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      data: error,
+    });
+  }
+};
+
+exports.getTourStats = async (req, res) => {
+  try {
+    const stats =await Tour.aggregate([
+      { $match: { ratingsAverage: { $gte: 4.5 } } },
+      {
+        $group: {
+          _id: null,
+          avgRating: { $avg: '$ratingsAverage' },
+          avgPrice: { $avg: '$price' },
+          minPrice: { $min: '$price' },
+          maxPrice: { $max: '$price' },
+        },
+      },
+    ]);
+     res.status(200).json({
+      status: 'success',
+      data: {
+        stats,
+      },
     });
   } catch (error) {
     res.status(400).json({
