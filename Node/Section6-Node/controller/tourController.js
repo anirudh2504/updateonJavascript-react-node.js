@@ -1,5 +1,6 @@
 const express = require('express');
 const Tour = require('../models/tourModel');
+const { options } = require('../app');
 
 // const tours = JSON.parse(
 //   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
@@ -104,23 +105,40 @@ exports.getAllTours = async (req, res) => {
     const queryObj = { ...req.query };
     const excludedFields = ['page', 'limit', 'sort', 'fields'];
     excludedFields.forEach((el) => delete queryObj[el]);
-
+  
     //------------ADVANCE FILTERING-------
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
     let query = Tour.find(JSON.parse(queryStr));
-    //---------------Sorting-------------
+
+// //--------by name----------------> /api/v1/tour?name=a    >>>>means name must include a
+// if(queryObj.name){
+//   queryObj.name={
+//     $regex: queryObj.name,
+//     options:'i'     // ----makes case insensitive
+//   }
+//   query=query.find(queryObj.name)
+// }
+
+
+
+
+
+
+    //---------------Sorting-------------     /api/v1/tour?sort=price       >this will sort by price
+                                              // api/v1/tour?sort=price,name >this will short by price and if equals than by name
     if (req.query.sort) {
       const sortBy = req.query.sort.split(',').join(' ');
       query = query.sort(sortBy);
     }
 
-    //-----------------Field Liming
+    //-----------------Field Limiting      /api/v1/tours?field=name,duration  >this will only give name and duration of all fields
     if (req.query.fields) {
       const fields = req.query.fields.split(',').join(' ');
       query = query.select(fields);
     }
-    //----------------------Pagination--------------
+    //----------------------Pagination-------------- 
+                                                 // /api/v1/tours/page=2 & limit=5,>>>>this will give 2nd page with data of 5
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 10;
     const skip = (page - 1) * limit;
