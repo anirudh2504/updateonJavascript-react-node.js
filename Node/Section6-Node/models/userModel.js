@@ -41,6 +41,10 @@ userSchema.pre('save',async function(next){
 //   let token=jwt.sign({email:"test@gjhg"},"secret")   ///this is our jwt token
 //   res.cookie("tooken",token)
 // })
+
+//want to access
+//let data=JWT.verify(req.cookie.token,secret)//use cookieparser before this 
+//like this app.use(cookie.parser())
 })
 
 const User = mongoose.model('User', userSchema);
