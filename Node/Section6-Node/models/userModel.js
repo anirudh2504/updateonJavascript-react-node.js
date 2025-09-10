@@ -33,9 +33,14 @@ const userSchema = new mongoose.Schema({
 
 userSchema.pre('save',async function(next){
   if(!this.isModified('password'))return next();
-  this.password=await bcrypt.hash(this.password,12)
+  this.password=await bcrypt.hash(this.password,12)  // This is used to encrypt password 
   this.passwordConfirm=undefined;
   next();
+  //this.password=bcrypt.compare("user password",decrpt passs saved in db,function(err,result)={result=>true/false})
+// app.get('/',function(res,req)=>{
+//   let token=jwt.sign({email:"test@gjhg"},"secret")   ///this is our jwt token
+//   res.cookie("tooken",token)
+// })
 })
 
 const User = mongoose.model('User', userSchema);
