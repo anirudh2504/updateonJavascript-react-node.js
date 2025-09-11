@@ -26,12 +26,14 @@ const userSchema = new mongoose.Schema({
       //this works only when we use Create or Save methods
       validator: function (el) {
         return el === this.password;
+        
       },
     },
   },
 });
 
-userSchema.pre('save',async function(next){
+
+userSchema.pre('save',async function(next){  //this will run before saving the data
   if(!this.isModified('password'))return next();
   this.password=await bcrypt.hash(this.password,12)  // This is used to encrypt password 
   this.passwordConfirm=undefined;
@@ -46,6 +48,8 @@ userSchema.pre('save',async function(next){
 //let data=JWT.verify(req.cookie.token,secret)//use cookieparser before this 
 //like this app.use(cookie.parser())
 })
+
+
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
