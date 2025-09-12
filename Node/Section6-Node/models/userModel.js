@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide password'],
     minLength: 8,
+    select:false   //  this will exclude password when user hits get req in db
   },
   passwordConfirm: {
     type: String,
