@@ -10,6 +10,10 @@ const userController=require('../controller/userController')
 router.post('/signup',authController.signup)
 router.post('/login',authController.login)
 
+//password routes
+router.post('/forgotpassword',authController.forgotPassword)
+router.post('/resetpassword',authController.resetPassword)
+
 
 //normal Routes 
 router.get('/', userController.getAllUsers);

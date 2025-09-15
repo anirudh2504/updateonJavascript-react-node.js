@@ -2,6 +2,7 @@ const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
+const crypto=require('crypto')
 
 dotenv.config({ path: '../config.env' }); //dotenv file configuration
 
@@ -13,6 +14,7 @@ exports.signup = async (req, res, next) => {
       email: req.body.email,
       password: req.body.password,
       passwordConfirm: req.body.passwordConfirm,
+      role:req.body.role
     }); //unique thing of user,jwt secret key,{expiry time}
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
@@ -111,7 +113,7 @@ exports.protect = async (req, res, next) => {
   ) {
     token = req.headers.authorization.split(' ')[1];
   }
-  console.log(token);
+  // console.log(token);
 
   if (!token) {
     return next(
@@ -125,12 +127,12 @@ exports.protect = async (req, res, next) => {
   //verify the token
   try {
     const decoded = await jwt.verify(token, process.env.JWT_SECRET);
-    console.log(decoded);
+    // console.log(decoded);
 
     //check user still exist
 
-    const curentUser = await User.findById(decoded.id);
-    if (!curentUser) {
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
       return next(
         res.status(401).json({
           status: 'fail',
@@ -140,9 +142,9 @@ exports.protect = async (req, res, next) => {
     }
 
     //check if user change password after token was issued
-    if (curentUser.passwordChangedAt) {
+    if (currentUser.passwordChangedAt) {
       const changedTimestamp = parseInt(
-        freshUser.passwordChangedAt.getTime() / 1000,
+        currentUser.passwordChangedAt.getTime() / 1000,
         10,
       );
 
@@ -155,13 +157,52 @@ exports.protect = async (req, res, next) => {
         );
       }
     }
+    //grant access to user if all things are correct
+  req.user = currentUser;
+  next();
   } catch (error) {
     res.status(400).json({
       status: 'fail',
       message: 'Invalid/Expired Token',
     });
   }
-//grant access to user if all things are correct
-req.user=curentUser
-  next();
+  
 };
+
+
+//to add delete functionality only by admin
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if(!roles.includes(req.user.role)){
+      return next(
+        res.status(401).json({
+          status: 'fail',
+          message: 'YOu dont have permission for this',
+        }),
+      );
+    }
+    next();
+
+  };
+};
+
+
+
+
+exports.forgotPassword=async(req,res)=>{
+
+
+  //1>>>>>>get user based on email
+  const user=await User.findOne({email:req.body.email})
+  if(!user){
+    return next("No such user Exist with email")
+  }
+
+  // 2>>>>>generate randon reset Token
+
+
+}
+
+exports.resetPassword=(req,res)=>{
+
+}
