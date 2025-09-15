@@ -31,13 +31,14 @@ const userSchema = new mongoose.Schema({
       },
     },
   },
+  passwordChangedAt:Date
 });
 
 
 userSchema.pre('save',async function(next){  //this will run before saving the data
   if(!this.isModified('password'))return next();
   this.password=await bcrypt.hash(this.password,12)  // This is used to encrypt password 
-  this.passwordConfirm=undefined;
+  this.passwordConfirm=undefined;     //this will hide the cnfrm pass field from database
   next();
   //this.password=bcrypt.compare("user password",decrpt passs saved in db,function(err,result)={result=>true/false})
 // app.get('/',function(res,req)=>{
@@ -49,6 +50,8 @@ userSchema.pre('save',async function(next){  //this will run before saving the d
 //let data=JWT.verify(req.cookie.token,secret)//use cookieparser before this 
 //like this app.use(cookie.parser())
 })
+
+
 
 
 

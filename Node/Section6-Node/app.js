@@ -3,9 +3,16 @@
 
 const express=require('express')
 const app=express() //express config
-app.use(express.json());
+app.use(express.json());   //to read the data send from the header
 
 
+
+app.use((req,res,next)=>{
+
+
+// console.log(req.headers)
+next();
+})
 // app.use(express.json()); //middleware  -----
 
 // const testMiddleware=(req,res,next)=>{
