@@ -191,15 +191,34 @@ exports.restrictTo = (...roles) => {
 
 exports.forgotPassword=async(req,res)=>{
 
+  try {
 
-  //1>>>>>>get user based on email
+    //1>>>>>>get user based on email
   const user=await User.findOne({email:req.body.email})
   if(!user){
-    return next("No such user Exist with email")
+    return next("No such user Exist with email");
   }
 
   // 2>>>>>generate randon reset Token
+    const resetToken = crypto.randomBytes(32).toString('hex');
 
+    //Hash the token and set it on the user document
+    const hashedToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+
+    user.passwordResetToken = hashedToken;
+    user.passwordResetExpires = Date.now() + 10 * 60 * 1000; // token valid for 10 minutes
+
+    user.save({validateBeforeSave:false})
+    
+  } catch (error) {
+    res.status(400).json({
+      status: 'fail',
+      data:error
+    });
+  }
+
+
+  
 
 }
 
