@@ -15,6 +15,8 @@ router.post('/forgotpassword',authController.forgotPassword)
 router.post('/resetpassword',authController.resetPassword)
 
 
+
+
 //normal Routes 
 router.get('/', userController.getAllUsers);
 router.post('/', userController.createUser);

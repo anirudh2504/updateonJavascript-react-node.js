@@ -1,18 +1,11 @@
+const express = require('express');
+const app = express(); //express config
+app.use(express.json()); //to read the data send from the header
 
-
-
-const express=require('express')
-const app=express() //express config
-app.use(express.json());   //to read the data send from the header
-
-
-
-app.use((req,res,next)=>{
-
-
-// console.log(req.headers)
-next();
-})
+app.use((req, res, next) => {   //middleware
+  // console.log(req.headers)
+  next();
+});
 // app.use(express.json()); //middleware  -----
 
 // const testMiddleware=(req,res,next)=>{
@@ -94,17 +87,13 @@ const userRouter = require('./routes/userRoutes');
 
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
-app.all('*',(req,res,next)=>{
-    res.status(404).json({
-        status:'fail',
-        message:'Can not find This url'
-    })
-
-})
-
-
+app.all('*', (req, res, next) => {
+  res.status(404).json({
+    status: 'fail',
+    message: 'Can not find This url',
+  });
+});
 
 // module.exports=router
 
-module.exports=app;
-
+module.exports = app;

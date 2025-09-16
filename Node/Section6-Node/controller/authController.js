@@ -15,7 +15,8 @@ exports.signup = async (req, res, next) => {
       password: req.body.password,
       passwordConfirm: req.body.passwordConfirm,
       role:req.body.role
-    }); //unique thing of user,jwt secret key,{expiry time}
+    });
+     //unique thing of user,jwt secret key,{expiry time}
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
@@ -111,7 +112,7 @@ exports.protect = async (req, res, next) => {
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
-    token = req.headers.authorization.split(' ')[1];
+    token = req.headers.authorization.split(' ')[1]; //split gives us arrayb and than we want element at index 1
   }
   // console.log(token);
 

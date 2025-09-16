@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
   photo: String,
   role:{
     type:String,
-    enum:['user','admin'],
+    enum:['user','admin'],   // this is used to make sure user can only enter these two values only
     default:'user'
   },
   password: {
