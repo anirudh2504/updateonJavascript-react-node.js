@@ -5,7 +5,8 @@ const router = express.Router();
 const cookieParser=require('cookie-parser')
 app.use(cookieParser())
 
-app.use(express.json());
+app.use(express.json()); // For parsing application/json
+app.use(express.urlencoded({ extended: true }));
 
 // app.use((req, res, next) => {
 //     console.log(req.headers);
@@ -33,8 +34,12 @@ router.get('/protected',authChecker.checkForAuth,(req,res)=>{
 //Logout
 router.post('/logout',authController.handleLogout)
 //change password
-router.post('/changepassword',authController.changePass)
+router.patch('/changepassword',authChecker.checkForAuth,authController.changePass)
 
+// Password reset
+router.post('/forgot-password', authController.handleForgotPassword);     //takes mail 
+router.post('/verify-otp', authController.handleVerifyOtp);               // takes email and otp
+router.patch('/reset-password', authController.handleResetPassword);     // takes email,otp ,newPassword
 // Mount the router
 app.use('/', router);
 
