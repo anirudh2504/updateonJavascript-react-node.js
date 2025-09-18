@@ -106,6 +106,7 @@ exports.changePass = async (req, res) => {
 exports.handleForgotPassword = async (req, res) => {
   // console.log(req)
   try {
+    
     const { email } = req.body;
 
     // console.log(req)
