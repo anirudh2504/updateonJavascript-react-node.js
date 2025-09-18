@@ -42,6 +42,10 @@ const userSchema = new mongoose.Schema({
 });
 
 
+// userSchema.pre('save',async()=>{         //>>>>>this will not work bcz arrow fn does not have this keyword 
+//   console.log("I am inside pre save hook")
+// })
+
 userSchema.pre('save',async function(next){  //this will run before saving the data
   if(!this.isModified('password'))return next();
   this.password=await bcrypt.hash(this.password,12)  // This is used to encrypt password 
