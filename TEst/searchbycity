@@ -1,0 +1,65 @@
+<SearchDropdown
+            placeholder={`${Common.getContentValue("labelSearch")} #State`}
+            options={state ? state : []}
+            onInputChange={(e) => {
+              const searchKeyWord = e?.target?.value;
+              handleBillingInfoSearch(searchKeyWord, 3);
+              setStateValue(searchKeyWord);
+              if (searchKeyWord === "") {
+                let tempCondition = _.cloneDeep(condition);
+                tempCondition.page = 0;
+                tempCondition.search = {
+                  ...tempCondition.search,
+                  "shippingInfo.state": "",
+                };
+                setCondition(tempCondition);
+              }
+            }}
+            optionLabel={(option) => {
+              if (option) return `${option}`;
+              return stateValue;
+            }}
+            onChange={(e, selectedState) => {
+              if (selectedState) {
+                setStateValue(selectedState);
+                let tempCondition = _.cloneDeep(condition);
+                tempCondition.page = 0;
+                tempCondition.search = {
+                  ...tempCondition.search,
+                  "shippingInfo.state": selectedState,
+                };
+                setCondition(tempCondition);
+                setShowCloseOrderBtn(false);
+              }
+            }}
+          />
+
+
+
+
+
+
+
+
+
+
+              ////////condition in order.js
+               if(condition?.search?.['shippingInfo.state']){
+        Object.asssign(tempCondition,{
+             "shippingInfo.state" :{ "$regex": condition.search["shippingInfo.state"], "$options": "i" }
+        })
+       }
+
+
+
+       //conditions in lamda import
+
+        if (exportCondition?.search?.["shippingInfo.state"]) {
+      exportCondition.search["state"] = exportCondition.search[
+        "shippingInfo.state"
+      ]["$regex"]
+        ? exportCondition.search["shippingInfo.state"]["$regex"]
+        : exportCondition.search["shippingInfo.state"];
+
+      delete exportCondition.search["shippingInfo.state"];
+    }

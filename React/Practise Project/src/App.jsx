@@ -17,6 +17,7 @@ import ParentContext from "./components/useContext/ParentContext";
 import UseCallbackHook from "./components/useCallback/UseCallbackHook";
 import FilterList from "./components/FilterList";
 import Data2 from "./components/Data2";
+import Model_PopUp from "./components/Models/popUp/Model_PopUp";
 //import UseMemoHook from './components/usememo/UseMemoHook'
 
 const UserContext = createContext();
@@ -46,6 +47,8 @@ function App() {
           description={"This is a tree image in green land"}
         />
       </div>
+      <hr />
+      <Model_PopUp/>
       <hr />
       <StateHook />
       <hr />
@@ -79,8 +82,12 @@ function App() {
       <hr />
       <br />
       <br />
+      
 
-      <Data2 />
+        <Data2 />
+      
+
+      
     </>
   );
 }
