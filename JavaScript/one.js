@@ -272,7 +272,7 @@
 // const newJessica=structuredClone(jessica);
 
 // newJessica.arr.push(200);
-// newJessica.arr.unshift(500);     //delete element 
+// newJessica.arr.unshift(500);     //delete element
 // console.log(jessica);
 // console.log(newJessica)
 

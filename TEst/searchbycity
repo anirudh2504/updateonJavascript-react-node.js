@@ -63,3 +63,66 @@
 
       delete exportCondition.search["shippingInfo.state"];
     }
+
+
+
+
+    const handleBillingInfoSearch = (searchKeyWord, type) => {
+  const updatedSearchCondition = _.cloneDeep(condition);
+  delete updatedSearchCondition.options?.rep;
+
+  if (!updatedSearchCondition.options) updatedSearchCondition.options = {};
+
+  if (type === 1) { // Zip
+    if (searchKeyWord && searchKeyWord.length > 2) {
+      updatedSearchCondition.options["shippingInfo.zipCode"] = { $regex: searchKeyWord, $options: "i" };
+    } else {
+      delete updatedSearchCondition.options["shippingInfo.zipCode"];
+    }
+  } else if (type === 2) { // City
+    if (searchKeyWord && searchKeyWord.length > 2) {
+      updatedSearchCondition.options["shippingInfo.city"] = { $regex: searchKeyWord, $options: "i" };
+    } else {
+      delete updatedSearchCondition.options["shippingInfo.city"];
+    }
+  } else if (type === 3) { // State
+    if (searchKeyWord && searchKeyWord.length > 2) {
+      updatedSearchCondition.options["shippingInfo.state"] = { $regex: searchKeyWord, $options: "i" };
+    } else {
+      delete updatedSearchCondition.options["shippingInfo.state"];
+    }
+  }
+
+  // If there’s any searchKeyWord, fetch options
+  if (Object.keys(updatedSearchCondition.options).length > 0) {
+    isloaderSpinner(true);
+    Api.sendRequest("/api/order/getOrders", {
+      condition: updatedSearchCondition.options,
+      limit: 50,
+      projectionFields: { shippingInfo: 1 },
+    }).then((response) => {
+      if (response.content) {
+        const orders = response.content;
+        const currentOptions = orders.map(order => {
+          if (!order.shippingInfo) return null;
+          if (type === 1) return order.shippingInfo.zipCode;
+          if (type === 2) return order.shippingInfo.city;
+          if (type === 3) return order.shippingInfo.state;
+        }).filter(Boolean);
+
+        const options = [...new Set(currentOptions)];
+        if (type === 1) setZipCode(options);
+        if (type === 2) setCity(options);
+        if (type === 3) setState(options);
+      }
+      isloaderSpinner(false);
+    });
+  } else {
+    // Clear the options if searchKeyWord too short
+    if (type === 1) setZipCode([]);
+    if (type === 2) setCity([]);
+    if (type === 3) setState([]);
+  }
+
+  setCondition(updatedSearchCondition);
+};

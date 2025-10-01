@@ -18,6 +18,7 @@ import UseCallbackHook from "./components/useCallback/UseCallbackHook";
 import FilterList from "./components/FilterList";
 import Data2 from "./components/Data2";
 import Model_PopUp from "./components/Models/popUp/Model_PopUp";
+// import NavBar from "./components/NavBar";
 //import UseMemoHook from './components/usememo/UseMemoHook'
 
 const UserContext = createContext();
@@ -27,6 +28,7 @@ function App() {
   return (
     <>
       <h2>React Concepts practise</h2>
+      {/* <NavBar/> */}
       <hr />
       <FirstCustomComponent />
       <hr />
