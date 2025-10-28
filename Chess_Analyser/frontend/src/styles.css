@@ -1,0 +1,90 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f7f8fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.input-box {
+  padding: 0.5rem;
+  width: 250px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #bbb;
+}
+
+.analyze-btn {
+  background: #0077ff;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.analyze-btn:hover {
+  background: #005fcc;
+}
+
+.game-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.game-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 200px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.game-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.game-card.active {
+  border-color: #0077ff;
+}
+
+.analysis-section {
+  margin-top: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+}
+.move-table table {
+  border-collapse: collapse;
+  margin: 1rem auto;
+  width: 90%;
+  font-size: 0.9rem;
+}
+
+.move-table th, .move-table td {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  text-align: center;
+}
+
+.blunder-row {
+  background-color: #ffd6d6;
+}
+
+.mistake-row {
+  background-color: #fff3cd;
+}
+
+.inaccuracy-row {
+  background-color: #e6f0ff;
+}
